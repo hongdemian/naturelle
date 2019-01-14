@@ -11,7 +11,18 @@ app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, './public')));
 
 app.get('/',(req, res)=> {
-	res.render('home.pug' );
+	res.render('home.pug');
 });
 
+app.get('/about', (req, res) => {
+	res.render('about.pug');
+});
+
+app.get('/contact', (req, res) => {
+	res.render('contact.pug');
+});
+
+app.get('*', (req, res) => {
+	res.render('home.pug');
+});
 app.listen(3000, '127.0.0.1');
