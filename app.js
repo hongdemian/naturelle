@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const helmet = require('helmet');
+const pug = require('pug');
 
 app.use (helmet());
 app.use(express.static('public'));
