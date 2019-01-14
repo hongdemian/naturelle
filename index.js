@@ -7,4 +7,4 @@ app.get('/',(req, res)=> {
 	res.send(`<h1>Naturelle Therapies</h1>`);
 });
 
-app.listen(3000);
+app.listen(3000, '127.0.0.1');
