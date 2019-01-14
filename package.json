@@ -2,7 +2,7 @@
   "name": "naturelle",
   "version": "1.0.0",
   "description": "Debbie's site",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "express": "^4.16.4",
     "express-generator": "^4.16.0"
