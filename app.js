@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 const pug = require('pug');
+const path = require('path');
 
 app.use (helmet());
 
