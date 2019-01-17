@@ -11,7 +11,7 @@ app.set('view engine', 'pug');
 app.use('/css', express.static(path.join(__dirname, './public')));
 
 app.get('/',(req, res)=> {
-	res.render('home.pug', {title: 'Naturelle Therapies'});
+	res.render('home.pug', {title: 'Naturelle Therapies (Debbie)'});
 });
 
 app.get('/about', (req, res) => {
