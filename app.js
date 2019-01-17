@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const pug = require('pug');
 const path = require('path');
 
-app.use (helmet());
+app.use (helmet.noCache());
 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'pug');
