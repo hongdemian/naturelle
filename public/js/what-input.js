@@ -16,9 +16,10 @@
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/
+	const installedModules = {};
 
-/******/ 	// The require function
+	/******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 
 /******/ 		// Check if module is in cache
@@ -26,13 +27,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 			return installedModules[moduleId].exports;
 
 /******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			exports: {},
-/******/ 			id: moduleId,
-/******/ 			loaded: false
-/******/ 		};
+/******/
+		const module = installedModules[moduleId] = {
+			/******/            exports: {},
+			/******/            id: moduleId,
+			/******/            loaded: false
+			/******/
+		};
 
-/******/ 		// Execute the module function
+		/******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
 /******/ 		// Flag the module as loaded
@@ -100,18 +103,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	   */
 
 	  // cache document.documentElement
-	  var docElem = document.documentElement;
+		const docElem = document.documentElement;
 
-	  // currently focused dom element
-	  var currentElement = null;
+		// currently focused dom element
+		let currentElement = null;
 
-	  // last used input type
-	  var currentInput = 'initial';
+		// last used input type
+		let currentInput = 'initial';
 
-	  // last used input intent
-	  var currentIntent = currentInput;
+		// last used input intent
+		let currentIntent = currentInput;
 
-	  // check for sessionStorage support
+		// check for sessionStorage support
 	  // then check for session variables and use if available
 	  try {
 	    if (window.sessionStorage.getItem('what-input')) {
@@ -124,91 +127,94 @@ return /******/ (function(modules) { // webpackBootstrap
 	  } catch (e) {}
 
 	  // event buffer timer
-	  var eventTimer = null;
+		let eventTimer = null;
 
-	  // form input types
-	  var formInputs = ['input', 'select', 'textarea'];
+		// form input types
+		const formInputs = ['input', 'select', 'textarea'];
 
-	  // empty array for holding callback functions
-	  var functionList = [];
+		// empty array for holding callback functions
+		const functionList = [];
 
-	  // list of modifier keys commonly used with the mouse and
+		// list of modifier keys commonly used with the mouse and
 	  // can be safely ignored to prevent false keyboard detection
-	  var ignoreMap = [16, // shift
-	  17, // control
-	  18, // alt
-	  91, // Windows key / left Apple cmd
-	  93 // Windows menu / right Apple cmd
-	  ];
+		let ignoreMap = [16, // shift
+			17, // control
+			18, // alt
+			91, // Windows key / left Apple cmd
+			93 // Windows menu / right Apple cmd
+		];
 
-	  var specificMap = [];
+		let specificMap = [];
 
-	  // mapping of events to input types
-	  var inputMap = {
-	    keydown: 'keyboard',
-	    keyup: 'keyboard',
-	    mousedown: 'mouse',
-	    mousemove: 'mouse',
-	    MSPointerDown: 'pointer',
-	    MSPointerMove: 'pointer',
-	    pointerdown: 'pointer',
-	    pointermove: 'pointer',
-	    touchstart: 'touch'
+		// mapping of events to input types
+		const inputMap = {
+			keydown: 'keyboard',
+			keyup: 'keyboard',
+			mousedown: 'mouse',
+			mousemove: 'mouse',
+			MSPointerDown: 'pointer',
+			MSPointerMove: 'pointer',
+			pointerdown: 'pointer',
+			pointermove: 'pointer',
+			touchstart: 'touch'
 
-	    // boolean: true if touch buffer is active
-	  };var isBuffering = false;
+			// boolean: true if touch buffer is active
+		};
+		let isBuffering = false;
 
-	  // boolean: true if the page is being scrolled
-	  var isScrolling = false;
+		// boolean: true if the page is being scrolled
+		let isScrolling = false;
 
-	  // store current mouse position
-	  var mousePos = {
-	    x: null,
-	    y: null
+		// store current mouse position
+		const mousePos = {
+			x: null,
+			y: null
 
-	    // map of IE 10 pointer events
-	  };var pointerMap = {
-	    2: 'touch',
-	    3: 'touch', // treat pen like touch
-	    4: 'mouse'
+			// map of IE 10 pointer events
+		};
+		const pointerMap = {
+			2: 'touch',
+			3: 'touch', // treat pen like touch
+			4: 'mouse'
 
-	    // check support for passive event listeners
-	  };var supportsPassive = false;
+			// check support for passive event listeners
+		};
+		let supportsPassive = false;
 
-	  try {
-	    var opts = Object.defineProperty({}, 'passive', {
-	      get: function get() {
-	        supportsPassive = true;
-	      }
-	    });
+		try {
+		  const opts = Object.defineProperty({}, 'passive', {
+			  get: function get() {
+				  supportsPassive = true;
+			  }
+		  });
 
-	    window.addEventListener('test', null, opts);
+		  window.addEventListener('test', null, opts);
 	  } catch (e) {}
 
 	  /*
 	   * set up
 	   */
 
-	  var setUp = function setUp() {
-	    // add correct mouse wheel event mapping to `inputMap`
-	    inputMap[detectWheel()] = 'mouse';
+		const setUp = function setUp() {
+			// add correct mouse wheel event mapping to `inputMap`
+			inputMap[detectWheel()] = 'mouse';
 
-	    addListeners();
-	    doUpdate('input');
-	    doUpdate('intent');
-	  };
+			addListeners();
+			doUpdate('input');
+			doUpdate('intent');
+		};
 
-	  /*
-	   * events
-	   */
+		/*
+		 * events
+		 */
 
 	  var addListeners = function addListeners() {
 	    // `pointermove`, `MSPointerMove`, `mousemove` and mouse wheel event binding
 	    // can only demonstrate potential, but not actual, interaction
 	    // and are treated separately
-	    var options = supportsPassive ? { passive: true } : false;
+		  const options = supportsPassive ? {passive: true} : false;
 
-	    // pointer events (mouse, pen, touch)
+		  // pointer events (mouse, pen, touch)
 	    if (window.PointerEvent) {
 	      window.addEventListener('pointerdown', setInput);
 	      window.addEventListener('pointermove', setIntent);
@@ -243,20 +249,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var setInput = function setInput(event) {
 	    // only execute if the event buffer timer isn't running
 	    if (!isBuffering) {
-	      var eventKey = event.which;
-	      var value = inputMap[event.type];
+		    const eventKey = event.which;
+		    let value = inputMap[event.type];
 
-	      if (value === 'pointer') {
+		    if (value === 'pointer') {
 	        value = pointerType(event);
 	      }
 
-	      var ignoreMatch = !specificMap.length && ignoreMap.indexOf(eventKey) === -1;
+		    const ignoreMatch = !specificMap.length && ignoreMap.indexOf(eventKey) === -1;
 
-	      var specificMatch = specificMap.length && specificMap.indexOf(eventKey) !== -1;
+		    const specificMatch = specificMap.length && specificMap.indexOf(eventKey) !== -1;
 
-	      var shouldUpdate = value === 'keyboard' && eventKey && (ignoreMatch || specificMatch) || value === 'mouse' || value === 'touch';
+		    const shouldUpdate = value === 'keyboard' && eventKey && (ignoreMatch || specificMatch) || value === 'mouse' || value === 'touch';
 
-	      if (currentInput !== value && shouldUpdate) {
+		    if (currentInput !== value && shouldUpdate) {
 	        currentInput = value;
 
 	        try {
@@ -268,10 +274,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      if (currentIntent !== value && shouldUpdate) {
 	        // preserve intent for keyboard typing in form fields
-	        var activeElem = document.activeElement;
-	        var notFormInput = activeElem && activeElem.nodeName && formInputs.indexOf(activeElem.nodeName.toLowerCase()) === -1;
+		      const activeElem = document.activeElement;
+		      const notFormInput = activeElem && activeElem.nodeName && formInputs.indexOf(activeElem.nodeName.toLowerCase()) === -1;
 
-	        if (notFormInput) {
+		      if (notFormInput) {
 	          currentIntent = value;
 
 	          try {
@@ -299,8 +305,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // only execute if the event buffer timer isn't running
 	    // or scrolling isn't happening
 	    if (!isBuffering && !isScrolling) {
-	      var value = inputMap[event.type];
-	      if (value === 'pointer') {
+		    let value = inputMap[event.type];
+		    if (value === 'pointer') {
 	        value = pointerType(event);
 	      }
 
@@ -373,9 +379,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // detect version of mouse wheel event to use
 	  // via https://developer.mozilla.org/en-US/docs/Web/Events/wheel
 	  var detectWheel = function detectWheel() {
-	    var wheelType = void 0;
+		  let wheelType = void 0;
 
-	    // Modern browsers support "wheel"
+		  // Modern browsers support "wheel"
 	    if ('onwheel' in document.createElement('div')) {
 	      wheelType = 'wheel';
 	    } else {
@@ -389,7 +395,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  // runs callback functions
 	  var fireFunctions = function fireFunctions(type) {
-	    for (var i = 0, len = functionList.length; i < len; i++) {
+		  let i = 0;
+		  const len = functionList.length;
+		  for (; i < len; i++) {
 	      if (functionList[i].type === type) {
 	        functionList[i].fn.call(undefined, type === 'input' ? currentInput : currentIntent);
 	      }
@@ -397,15 +405,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  // finds matching element in an object
-	  var objPos = function objPos(match) {
-	    for (var i = 0, len = functionList.length; i < len; i++) {
-	      if (functionList[i].fn === match) {
-	        return i;
-	      }
-	    }
-	  };
+		const objPos = function objPos(match) {
+			let i = 0;
+			const len = functionList.length;
+			for (; i < len; i++) {
+				if (functionList[i].fn === match) {
+					return i;
+				}
+			}
+		};
 
-	  var detectScrolling = function detectScrolling(event) {
+		var detectScrolling = function detectScrolling(event) {
 	    if (mousePos['x'] !== event.screenX || mousePos['y'] !== event.screenY) {
 	      isScrolling = false;
 
@@ -465,9 +475,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    unRegisterOnChange: function unRegisterOnChange(fn) {
-	      var position = objPos(fn);
+		    const position = objPos(fn);
 
-	      if (position || position === 0) {
+		    if (position || position === 0) {
 	        functionList.splice(position, 1);
 	      }
 	    }
