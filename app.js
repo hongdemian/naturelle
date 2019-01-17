@@ -8,7 +8,7 @@ app.use (helmet.noCache());
 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'pug');
-app.use('/css', express.static(path.join(__dirname, '/public/css')));
+app.use('/css', express.static(path.join(__dirname, '/public')));
 app.use('/js', express.static(path.join(__dirname, '/public/js')));
 
 app.get('/',(req, res)=> {
