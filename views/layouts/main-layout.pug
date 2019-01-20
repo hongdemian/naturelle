@@ -1,0 +1,40 @@
+doctype html
+html
+    head
+        meta(name = "viewport" content = "width = device-width, initial-scale = 1")
+        link(rel='stylesheet', href='/css/foundation.css', type='text/css')
+        link(rel='stylesheet', href='/css/app.css', type='text/css')
+        title #{title}
+        //script(src='/js/foundation.js', crossorigin="anonymous")
+        //script(src='/js/jquery.js')
+        //script(scr='/js/what-input.js')
+    body
+        .row.align-justify.top-bar
+            ul.menu
+                li.menu-text
+                    span Naturelle Therapies
+            ul.menu
+                li(class=(path === "/" ? 'is-active' : ''))
+                    a(href="/", )
+                        i.fi-list
+                        span Home
+                li(class=(path === "/testimonials" ? 'is-active' : ''))
+                    a(href="/testimonials")
+                        i.fi-list
+                        span Testimonials
+                li(class=(path === "/rates" ? 'is-active' : ''))
+                    a(href="/rates")
+                        i.fi-list
+                        span Rates
+                li(class=(path === "/about" ? 'is-active' : ''))
+                    a(href="/about")
+                        i.fi-list
+                        span About
+                li(class=(path === "/contact" ? 'is-active' : ''))
+                    a(href="/contact")
+                        i.fi-list
+                        span Contact
+
+        block content
+
+
