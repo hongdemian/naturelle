@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 // app.use(express.static(path.join(__dirname, '/public/js')));
 
 app.get('/',(req, res)=> {
-	res.render('home.pug', {title: 'Naturelle Therapies (Debbie)'});
+	res.render('home.pug', {title: 'Naturelle Therapies'});
 });
 
 app.get('/about', (req, res) => {
