@@ -24,6 +24,6 @@ app.get('/contact', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-	res.render('home.pug');
+	res.render('404', {title: "Not Found!"});
 });
 app.listen(3000);
