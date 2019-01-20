@@ -1,4 +1,18 @@
 extends layouts/main-layout.pug
 
 block content
-    h1 CONTACT PAGE (FORM)
+    .flex-container.align-center-middle
+        .form
+            .grid-container
+                .grid-x.grid-padding-x
+                    .medium-6.cell
+                        label Name:
+                            input(type="text", placeholder="First Name")
+                            input(type="text", placeholder="Last Name")
+                    .medium-6.cell
+                        label Contact Information:
+                            input(type="phone")
+                            input(type="email")
+
+
+
