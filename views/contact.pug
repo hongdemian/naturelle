@@ -2,7 +2,7 @@ extends layouts/main-layout.pug
 
 block content
     .flex-container.align-center-middle
-        .form
+        .form(action="/", method="POST")
             .grid-container
                 .grid-x.grid-padding-x
                     .medium-6.cell
@@ -11,12 +11,16 @@ block content
                     .medium-6.cell
                         label ""
                             input(type="text", placeholder="Last Name")
-                    .medium-6.cell
+                    .medium-4.cell
                         label Contact Information:
                             input(type="tel", placeholder="Phone number")
-                    .medium-6.cell
+                    .medium-4.cell
                         label ""
                             input(type="email", placeholder="Email")
-
-
+                    .medium-2.cell
+                        label Preferred Contact Method
+                            input(list="contact-method", name="preferred-contact-method")
+                            datalist(id="contact-method")
+                                option(value="Phone")
+                                option(value="Email")
 
